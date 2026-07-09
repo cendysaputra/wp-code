@@ -1,0 +1,10 @@
+/* Video Post Artikel */
+.video-post .ast-oembed-container {
+  height: 400px!important;
+}
+
+@media(max-width:544px){
+	.video-post .ast-oembed-container {
+	  height: 150px!important;
+	}
+}

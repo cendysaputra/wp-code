@@ -1,0 +1,46 @@
+/* GTranslate */
+@media(min-width: 921px) {
+	.gt-selected .gt-current-lang img {
+	opacity: 0 !important;
+	position: absolute !important;
+}
+
+.gt-selected .gt-current-lang {
+	position: relative !important;
+	padding-left: 30px !important;
+	background-image: url('/wp-content/uploads/2026/04/Icon-Stroke.png') !important;
+	background-repeat: no-repeat !important;
+	background-size: 20px 20px !important;
+	background-position: left center !important;
+}
+
+.gt-selected .gt-lang-code {
+	font-size: 0.7em!important;
+}
+
+.gt_float_switcher .gt_options {
+	background-color: white;
+	width: 160px;
+	font-size: 16px;
+	position: absolute!important;
+	top: 64px;
+	margin-left: -56px;
+}
+
+.gt_float_switcher .gt_options a:hover {
+	background-color: white !important;
+	color: black !important;
+}
+
+.gt_float_switcher {
+	display: inline-block;
+	box-shadow: rgba(0, 0, 0, 0.0) 0 0px 0px!important;
+	background: transparent!important;
+	margin-top: 8px;
+}
+
+.gt_float_switcher-arrow {
+	transform: rotate(0deg)!important;
+	margin-top: 4px;
+}
+}

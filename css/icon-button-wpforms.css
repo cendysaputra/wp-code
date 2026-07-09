@@ -1,0 +1,33 @@
+/* Form Kontak */
+.wpforms-submit {
+    display: flex;
+    justify-content: center;
+}
+
+.wpforms-submit::after {
+    content: url('/wp-content/uploads/2024/10/newnewnew.svg');
+    display: inline-block;
+    margin-left: 10px;
+}
+
+
+/* Atau */
+
+
+/* Form Kontak */
+.wpforms-submit {
+    display: flex;
+    justify-content: center;
+}
+
+.wpforms-submit::after {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url('/wp-content/uploads/2025/05/Arrow.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-left: 15px;
+}

@@ -1,0 +1,38 @@
+/* Slider Hero Banner */
+.slide-hero .swiper-pagination {
+    display: flex;
+    gap: 8px;
+    width: 1200px;
+    max-width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.slide-hero .swiper-pagination-bullet {
+    width: 8% !important;
+    height: 4px;
+    border-radius: 0 !important;
+    background: #FFFFFF30 !important;
+    position: relative;
+    overflow: hidden;
+    opacity: 1 !important;
+}
+
+.slide-hero .swiper-pagination-bullet {
+    animation: none;
+}
+
+.slide-hero .swiper-pagination-bullet-active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #FFF;
+    animation: loadingBar 5s linear forwards;
+}
+
+@keyframes loadingBar {
+    to { width: 100%; }
+}

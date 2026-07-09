@@ -1,0 +1,10 @@
+@media (max-width: 921px) {
+  selector {
+    scroll-snap-type: none !important;
+    overflow-y: auto !important;
+  }
+
+  selector > * {
+    scroll-snap-align: none !important;
+  }
+}

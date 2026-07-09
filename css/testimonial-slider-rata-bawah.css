@@ -1,0 +1,15 @@
+/* testimonial */
+.testimoni-klien .elementor-testimonial {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.testimoni-klien .elementor-testimonial__content {
+  flex-grow: 1;
+}
+
+.testimoni-klien .elementor-testimonial__footer {
+  margin-top: auto;
+}

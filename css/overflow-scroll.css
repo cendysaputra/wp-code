@@ -1,0 +1,24 @@
+/* Maps Hotspot */
+@media(max-width:480px) {	
+		.scroll-mobile::-webkit-scrollbar {
+			background: #EEE;
+			border-radius: 100px;
+			height: 3px;
+}
+
+
+	.scroll-mobile::-webkit-scrollbar-thumb {
+		background: #CCC;
+		border-radius: 100px;
+	}
+
+
+	.scroll-mobile {
+		display: flex;
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		width: 100%;
+		white-space: nowrap;
+		box-sizing: border-box;
+	}
+}

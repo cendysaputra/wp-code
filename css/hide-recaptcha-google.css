@@ -1,0 +1,4 @@
+/* Recaptcha */
+.grecaptcha-badge {
+    display: none !important;
+}

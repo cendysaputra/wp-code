@@ -1,0 +1,6 @@
+.cat-news-icon .elementor-sitemap-item:before {
+    content: url('/wp-content/uploads/2025/05/Vector-2.svg');
+    margin-right: 15px;
+    transform: scale(1.15);
+    display: inline-block;
+}

@@ -1,0 +1,42 @@
+/* Loop Item */
+.e-loop-item {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+
+/* Text List */
+.text-list ul,
+.text-list ol {
+	margin: 0 0 1em 1.3em;
+}
+
+.text-list img {
+	margin: 24px 0 24px 0;
+}
+
+.text-list h1,
+.text-list h2,
+.text-list h3,
+.text-list h4,
+.text-list h5,
+.text-list h6 {
+	margin: 24px 0 16px 0;
+}
+
+.text-list h1:first-child,
+.text-list h2:first-child,
+.text-list h3:first-child,
+.text-list h4:first-child,
+.text-list h5:first-child,
+.text-list h6:first-child {
+	margin-top: 0;
+}
+
+.text-list li {
+	margin-top: 16px;
+}
+
+.text-list li:first-child {
+	margin-top: 0;
+}

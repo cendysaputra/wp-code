@@ -1,0 +1,34 @@
+/* Video UAE Bug */
+@media(max-width: 544px) {
+.video-bug {
+	height: 0;
+	padding-bottom: 56.25%;
+	position: relative;
+	}
+
+	.video-bug iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		}
+}
+
+
+/* Video UAE Bug Potrait */
+@media(max-width: 544px) {
+	.video-bug-potrait {
+		height: 0;
+		padding-bottom: 177.78%;
+    position: relative;
+    }
+
+   .video-bug-potrait iframe {
+	   position: absolute;
+	   top: 0;
+	   left: 0;
+	   width: 100%;
+	   height: 100%;
+	   }
+}

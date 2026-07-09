@@ -1,0 +1,10 @@
+/* Bug Gap Loop Slider */
+.loop-slider .swiper-wrapper {
+	gap: 20px;
+}
+
+@media(max-width:921px){
+	.loop-slider .swiper-wrapper {
+	gap: 10px;
+}
+}

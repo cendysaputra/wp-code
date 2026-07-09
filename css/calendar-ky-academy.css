@@ -1,0 +1,78 @@
+/* google calendar */
+.google-calendar .pgcal-branding {
+	display: none;
+}
+
+:root {
+	--fc-button-bg-color: var(--ast-global-color-0);
+	--fc-button-active-bg-color: var(--ast-global-color-1);
+	--fc-button-active-border-color: var(--ast-global-color-0);
+	--fc-button-border-color: var(--ast-global-color-0);
+}
+
+.google-calendar .fc-event-time {
+	display: none;
+}
+
+.google-calendar .fc-event-title {
+		font-size: .9em;
+		line-height: 1.4em;
+	}
+
+@media(max-width: 500px) {
+.google-calendar .fc-view > table {
+	min-width: 900px !important;
+	overflow-x: auto !important;
+	margin-right: 16px;
+}
+	
+	.google-calendar .fc-listCustom-view{
+		margin-right:16px;
+	}
+
+.google-calendar .fc-view {
+	overflow-x: auto;
+		position: relative;
+}
+	
+.google-calendar .fc-view-harness:has(.fc-dayGridMonth-view)::after {
+    content: "";
+    height: 100%;
+    width: 100px;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+	background: rgb(0,0,0) !important;
+background: linear-gradient(90deg, rgba(0,0,0,0) 50%, rgba(255,255,255,1) 100%) !important;
+	pointer-events: none;
+	z-index: 99999 !important;
+}
+	
+	.google-calendar .fc-event-title {
+		font-size: .8em;
+		line-height: 1.4em;
+	}
+	
+	.google-calendar .pgcal-container .fc-header-toolbar {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		row-gap: 10px;
+	}
+	
+	.google-calendar .pgcal-container .fc-header-toolbar .fc-toolbar-chunk:nth-child(1) {
+		order: 2;
+	}
+	
+	.google-calendar .pgcal-container .fc-header-toolbar .fc-toolbar-chunk:nth-child(2) {
+		order: 1;
+		width: 100%;
+	}
+	
+	.google-calendar .pgcal-container .fc-header-toolbar .fc-toolbar-chunk:nth-child(3) {
+		order: 3;
+		padding-right: 16px;
+	}
+	
+}

@@ -1,0 +1,154 @@
+/* Lecturture Schedule */ 
+.lecture-schedule .schedule-container {
+	display: flex;
+	flex-direction: row;
+}
+
+.lecture-schedule {
+	display:  flex;
+	flex-direction:  column;
+	background: #00000094; 
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.lecture-schedule .title {
+	text-align: center;
+}
+
+.lecture-schedule  .schedule-con {
+	width: 100%;
+	display: flex ;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	position: relative;
+	height:  100px;
+	border-radius: 10px;
+}
+
+.lecture-schedule  .schedule-con .schedule {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items:  center;
+	border:  1px solid #7A7A7A;
+	gap: 5px;
+	background-size:  cover;
+	padding: 10px;
+	height:  200px;
+	border-radius: 0px;
+}
+
+.lecture-schedule .schedule-container {
+	height:  200px;
+}
+
+.lecture-schedule .schedule {
+  position: relative;
+}
+
+.lecture-schedule .schedule::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 0; 
+}
+
+.lecture-schedule .schedule .title,
+.lecture-schedule .schedule .description,
+.lecture-schedule .schedule .time-row {
+  position: relative;
+  z-index: 1; 
+	color: white;
+}
+
+.lecture-schedule .schedule h4 {
+	margin-bottom: 0px;
+}
+
+.lecture-schedule .time-row {
+	display: flex;
+	flex-direction: row;
+	gap: 2px;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.lecture-schedule .time-row * {
+	font-size: .7em;
+	line-height: 1.8em;
+}
+
+.lecture-schedule .description h5 {
+	margin-bottom: unset;
+	text-align:  center;
+}
+
+
+/* number */
+.lecture-schedule .type-class {
+	font-size: 1.5em;
+	color: white;
+	background: var(--ast-global-color-8);
+	text-align: center;
+	width: 80px;
+	
+}
+
+.lecture-schedule .schedule-container .type-class {
+	padding-top: 20px;
+}
+
+/* end */
+
+@media(max-width: 921px) {
+	.lecture-schedule .type-class {
+	font-size: 1.2em;
+	width: 50px;
+}
+
+	.lecture-schedule .schedule {
+	height: 170px !important;
+}
+
+.lecture-schedule .schedule-container {
+	height:  170px !important;
+
+}
+}
+
+@media(max-width: 500px) {
+	.lecture-schedule .type-class {
+	font-size: 1em;
+	width: 40px;
+}
+
+	.lecture-main-parent-con
+	{
+		overflow-x: auto;
+		position: relative;		
+	}
+	
+	.lecture-main-parent  {
+		min-width: 600px !important; 
+        overflow-x: auto !important;
+	}
+	
+	.lecture-main-parent-con-parent::after {
+		content: "";
+background: rgb(16,16,16);
+background: linear-gradient(270deg, rgba(16,16,16,1) 0%, rgba(0,0,0,0) 100%);
+    height: 100%;
+    width: 40px;
+    position: absolute;
+    right: 0;
+    top: 0;
+	}
+}
