@@ -1,0 +1,16 @@
+.page-numbers {
+	padding: 0.7em 1.1em;
+	background: white;
+	color: black;
+	font-size: 0.9em;
+}
+
+.page-numbers:hover {
+	background: var(--ast-global-color-1);
+	color: white;
+}
+
+.page-numbers.current {
+	background: var(--ast-global-color-1);
+	color: white;
+}
