@@ -1,5 +1,27 @@
 if (window.matchMedia('(min-width: 921px)').matches) {
   if (document.querySelector('.share-link')) {
+    const copyToClipboard = async text => {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+
+      const copied = document.execCommand('copy');
+      textarea.remove();
+
+      if (!copied) {
+        throw new Error('Unable to copy the link');
+      }
+    };
+
     document.querySelectorAll('.share-link').forEach(el => {
       el.style.pointerEvents = 'auto';
       el.style.cursor = 'pointer';
@@ -14,7 +36,12 @@ if (window.matchMedia('(min-width: 921px)').matches) {
         e.preventDefault();
         
         if (el.querySelector('.copied-label')) return;
-        await navigator.clipboard.writeText(window.location.href);
+
+        try {
+          await copyToClipboard(window.location.href);
+        } catch (error) {
+          return;
+        }
         
         const label = Object.assign(document.createElement('span'), {
           className: 'copied-label',

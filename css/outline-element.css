@@ -1,0 +1,14 @@
+/* Outline website element */
+*:focus,
+*:focus-visible,
+*:focus-within {
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+.ast-mobile-header-wrap .ast-button-wrap .menu-toggle.main-header-menu-toggle:focus,
+[data-section="section-header-mobile-trigger"] .ast-button-wrap .menu-toggle:focus,
+.ast-mobile-popup-drawer.active .menu-toggle-close:focus {
+	border-style: none !important;
+	border-width: 0 !important;
+}

@@ -1,0 +1,67 @@
+/* Animasi flyout */
+#ast-mobile-header {
+	z-index: 1000;
+}
+
+.ast-main-header-nav-open {
+	overflow: hidden;
+}
+
+@media (max-width: 921px) {
+	.ast-header-break-point .ast-mobile-header-wrap .ast-main-header-wrap,
+	.ast-header-break-point .ast-mobile-header-wrap .main-header-bar {
+		position: relative;
+		z-index: 101;
+		background: #fff;
+	}
+
+	.ast-header-break-point .ast-mobile-header-wrap .ast-mobile-header-content {
+		position: fixed !important;
+		top: 70px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: auto !important;
+		max-height: none !important;
+		z-index: 100;
+		background: #fff;
+		overflow-y: auto;
+		display: flex !important;
+		flex-direction: column;
+		justify-content: space-between;
+		padding-bottom: 32px !important;
+		transform: translateY(-100%);
+		visibility: hidden;
+		pointer-events: none;
+		transition: transform 0.2s linear, visibility 0s linear 0.2s;
+	}
+
+	.ast-header-break-point.ast-main-header-nav-open .ast-mobile-header-wrap .ast-mobile-header-content {
+		transform: translateY(0);
+		visibility: visible;
+		pointer-events: auto;
+		transition: transform 0.2s linear, visibility 0s;
+	}
+
+	#ast-mobile-header .content-align-flex-start {
+		padding: 0 24px;
+	}
+}
+
+@media (max-width: 544px) {
+	#ast-mobile-header .content-align-flex-start {
+		padding: 0 16px;
+	}
+}
+
+
+
+/* Joinchat */
+@media (max-width: 921px) {
+	.ast-main-header-nav-open .joinchat {
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transition: opacity 0.2s linear, visibility 0s linear 0.2s;
+	}
+}

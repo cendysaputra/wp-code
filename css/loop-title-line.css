@@ -1,0 +1,15 @@
+/* Box card */
+.box-card .title .elementor-heading-title {
+	display: inline;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+	background-image: linear-gradient(currentColor, currentColor);
+	background-repeat: no-repeat;
+	background-position: 0 66%;
+	background-size: 0 1px;
+	transition: background-size 0.35s linear;
+}
+
+.box-card:hover .title .elementor-heading-title {
+	background-size: 100% 1px;
+}

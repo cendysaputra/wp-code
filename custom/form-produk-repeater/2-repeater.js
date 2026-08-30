@@ -3,7 +3,12 @@ document.addEventListener('DOMContentLoaded', function() {
   const hapusBtn = document.querySelector('.hapus');
   const form = document.querySelector('.elementor-form');
   
-  const container = document.querySelector('.elementor-field-type-select').parentElement;
+  const selectField = document.querySelector('.elementor-field-type-select');
+  const container = selectField ? selectField.parentElement : null;
+
+  if (!tambahBtn || !hapusBtn || !form || !container) {
+    return;
+  }
   
   let fieldCounter = 3;
   
@@ -13,6 +18,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const firstSelect = document.querySelector('.elementor-field-type-select');
     const firstNumber = document.querySelector('.elementor-field-type-number');
+
+    if (!firstSelect || !firstNumber) {
+      return;
+    }
     
     const newSelect = firstSelect.cloneNode(true);
     const newNumber = firstNumber.cloneNode(true);
@@ -83,6 +92,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Masukkan ke hidden field
     const hiddenField = document.getElementById('form-field-product_summary');
-    hiddenField.value = textOutput;
+    if (hiddenField) {
+      hiddenField.value = textOutput;
+    }
   });
 });
