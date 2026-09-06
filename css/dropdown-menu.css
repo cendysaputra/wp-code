@@ -12,12 +12,18 @@
 	.ast-header-break-point .ast-mobile-header-wrap .main-header-bar {
 		position: relative;
 		z-index: 101;
+		background: transparent;
+		transition: background 0.2s linear;
+	}
+
+	.ast-header-break-point.ast-main-header-nav-open .ast-mobile-header-wrap .ast-main-header-wrap,
+	.ast-header-break-point.ast-main-header-nav-open .ast-mobile-header-wrap .main-header-bar {
 		background: #fff;
 	}
 
 	.ast-header-break-point .ast-mobile-header-wrap .ast-mobile-header-content {
 		position: fixed !important;
-		top: 70px;
+		top: 60px;
 		left: 0;
 		right: 0;
 		bottom: 0;
@@ -51,17 +57,5 @@
 @media (max-width: 544px) {
 	#ast-mobile-header .content-align-flex-start {
 		padding: 0 16px;
-	}
-}
-
-
-
-/* Joinchat */
-@media (max-width: 921px) {
-	.ast-main-header-nav-open .joinchat {
-		opacity: 0;
-		visibility: hidden;
-		pointer-events: none;
-		transition: opacity 0.2s linear, visibility 0s linear 0.2s;
 	}
 }
