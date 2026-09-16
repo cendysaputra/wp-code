@@ -1,0 +1,208 @@
+<style>
+.anim-img .anim-img__mask {
+	display: block;
+	position: relative;
+	overflow: hidden;
+	line-height: 0;
+}
+
+/* gambar yang mengisi kotak (cover / absolute) */
+.anim-img .anim-img__mask.is-fill {
+	width: 100%;
+	height: 100%;
+}
+
+.anim-img .anim-img__mask.is-abs {
+	position: absolute;
+	inset: 0;
+}
+
+/* state tersembunyi hanya untuk mask yang sudah dipantau JS */
+.anim-img .anim-img__mask.is-armed {
+	clip-path: inset(100% 0 0 0);
+	transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.anim-img .anim-img__mask.is-armed img {
+	scale: 1.3;
+	transform-origin: center;
+	transition: scale 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.anim-img .anim-img__mask.is-armed.is-inview {
+	clip-path: inset(0 0 0 0);
+}
+
+.anim-img .anim-img__mask.is-armed.is-inview img {
+	scale: 1;
+}
+
+.anim-img .anim-img__mask.is-armed.is-done {
+	clip-path: none;
+}
+
+/* parallax */
+.anim-img .anim-img__mask img {
+	translate: 0 var(--anim-py, 0px);
+}
+
+.anim-img.anim-parallax .anim-img__mask.is-armed.is-inview img {
+	scale: 1.15;
+}
+</style>
+
+<script>
+(function () {
+	var qs = window.location.search;
+
+	var reduceMotion = window.matchMedia &&
+		window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	var inPreview =
+		window.self !== window.top ||
+		qs.indexOf('elementor-preview=') !== -1 ||
+		qs.indexOf('customize_changeset_uuid=') !== -1 ||
+		qs.indexOf('preview=') !== -1;
+
+	if (reduceMotion || inPreview || !('IntersectionObserver' in window)) {
+		return;
+	}
+
+	var bound = new WeakSet();
+	var parallaxEls = [];
+	var ticking = false;
+	var io;
+
+	function isEditor() {
+		var b = document.body;
+		return b.classList.contains('elementor-editor-active') ||
+			b.classList.contains('elementor-editor-preview') ||
+			b.classList.contains('wp-customizer');
+	}
+
+	function wrap(img) {
+		var target = img.parentElement && img.parentElement.tagName === 'PICTURE'
+			? img.parentElement
+			: img;
+
+		if (target.parentElement && target.parentElement.classList.contains('anim-img__mask')) {
+			return;
+		}
+
+		var cs = window.getComputedStyle(img);
+
+		var mask = document.createElement('span');
+		mask.className = 'anim-img__mask';
+
+		if (cs.position === 'absolute' || cs.position === 'fixed') {
+			mask.classList.add('is-abs');
+		} else if (cs.objectFit === 'cover' || cs.objectFit === 'contain') {
+			mask.classList.add('is-fill');
+		}
+
+		target.parentNode.insertBefore(mask, target);
+		mask.appendChild(target);
+	}
+
+	function bind(mask, index) {
+		if (bound.has(mask)) {
+			return;
+		}
+		bound.add(mask);
+
+		/* slide clone Swiper bisa membawa class lama, reset dulu */
+		mask.classList.remove('is-inview', 'is-done');
+
+		var delay = (index * 0.12) + 's';
+		mask.style.transitionDelay = delay;
+		var img = mask.querySelector('img');
+		if (img) {
+			img.style.transitionDelay = delay;
+		}
+
+		mask.addEventListener('transitionend', function (e) {
+			if (e.target === mask && e.propertyName === 'clip-path' && mask.classList.contains('is-inview')) {
+				mask.classList.add('is-done');
+			}
+		});
+
+		if (mask.closest('.anim-parallax')) {
+			parallaxEls.push(mask);
+		}
+
+		mask.classList.add('is-armed');
+		io.observe(mask);
+	}
+
+	function scan() {
+		document.querySelectorAll('.anim-img').forEach(function (parent) {
+			parent.querySelectorAll('img').forEach(wrap);
+			parent.querySelectorAll('.anim-img__mask').forEach(function (mask, i) {
+				bind(mask, i % 6);
+			});
+		});
+		updateParallax();
+	}
+
+	function updateParallax() {
+		ticking = false;
+		var vh = window.innerHeight;
+
+		parallaxEls.forEach(function (mask) {
+			if (!mask.isConnected) {
+				return;
+			}
+			var r = mask.getBoundingClientRect();
+			if (r.bottom < 0 || r.top > vh || !r.height) {
+				return;
+			}
+			var progress = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2);
+			progress = Math.max(-1, Math.min(1, progress));
+			mask.style.setProperty('--anim-py', (progress * r.height * 0.07).toFixed(2) + 'px');
+		});
+	}
+
+	function onScroll() {
+		if (!ticking && parallaxEls.length) {
+			ticking = true;
+			requestAnimationFrame(updateParallax);
+		}
+	}
+
+	function init() {
+		if (isEditor()) {
+			return;
+		}
+
+		io = new IntersectionObserver(function (entries) {
+			entries.forEach(function (entry) {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('is-inview');
+					io.unobserve(entry.target);
+				}
+			});
+		}, {
+			threshold: 0,
+			rootMargin: '0px 0px -10% 0px'
+		});
+
+		scan();
+
+		window.addEventListener('scroll', onScroll, { passive: true });
+		window.addEventListener('resize', onScroll);
+		window.addEventListener('load', scan);
+
+		var moTimer;
+		new MutationObserver(function () {
+			clearTimeout(moTimer);
+			moTimer = setTimeout(scan, 150);
+		}).observe(document.body, { childList: true, subtree: true });
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', init);
+	} else {
+		init();
+	}
+})();
+</script>
