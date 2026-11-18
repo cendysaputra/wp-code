@@ -9,12 +9,13 @@ Kumpulan kode dan panduan web development:
 
 ```
 wp-code/
-├── css/       snippet CSS
-├── js/        snippet JavaScript
-├── php/       snippet PHP (functions.php / Code Snippets)
-├── html/      snippet HTML (HTML widget)
-├── custom/    fitur gabungan multi-file
-└── planning/  panduan project custom programming
+├── wordpress/
+│   ├── css/     snippet CSS
+│   ├── js/      snippet JavaScript
+│   ├── php/     snippet PHP (functions.php / Code Snippets)
+│   ├── html/    snippet HTML (HTML widget)
+│   └── custom/  fitur gabungan multi-file
+└── planning/    panduan project custom programming
 ```
 
 ## Snippet WordPress + Elementor
@@ -25,7 +26,7 @@ wp-code/
 | JS, HTML | Elementor HTML widget |
 | PHP | `functions.php` child theme / plugin Code Snippets |
 
-Fitur di `custom/` terdiri dari beberapa file, pasang sesuai urutan nomor (`1-`, `2-`, `3-`).
+Semua ada di folder `wordpress/`. Fitur di `custom/` terdiri dari beberapa file, pasang sesuai urutan nomor (`1-`, `2-`, `3-`).
 
 > Sesuaikan class/selector dengan project, sebagian snippet dibuat untuk kasus tertentu.
 
