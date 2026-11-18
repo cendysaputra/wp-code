@@ -1,6 +1,6 @@
 # PLAN.md
 
-Ikuti aturan di `AGENT.md`. Breakpoint: mobile ≤767, tablet 768-1024, desktop ≥1025.
+Ikuti `AGENT.md` dan `DESIGN.md`.
 
 ## Fase 0: Setup
 - [ ] Kebutuhan: sitemap, halaman, fitur, desain
@@ -9,14 +9,9 @@ Ikuti aturan di `AGENT.md`. Breakpoint: mobile ≤767, tablet 768-1024, desktop 
 - [ ] Library optional (jika perlu): Swiper.js, FsLightbox
 - [ ] Struktur folder ikut konvensi framework, wajib pisah: token, komponen, konten, config
 
-## Fase 1: Global Settings (`tokens.css`)
-- [ ] Font family & weight
-- [ ] Skala font (px, desktop/tablet/mobile): h1 64/48/40, h2 48/40/32, h3 32/32/24, h4 24, h5-h6 & body 16
-- [ ] Line-height kelipatan 8
-- [ ] Warna: primary, secondary, accent, text, muted, bg, surface, border, success, warning, error
-- [ ] Spacing `--space-1` (8) s/d `--space-15` (120)
-- [ ] Section: `--section-py` 120/72/72, `--section-px` container/24/16
-- [ ] Container, radius, shadow, z-index, transition
+## Fase 1: Global Settings
+- [ ] Lengkapi nilai `TBD` di `DESIGN.md`
+- [ ] Implementasi semua token `DESIGN.md` ke `tokens.css`
 - [ ] Reset + base style + halaman style guide
 
 ## Fase 2: Komponen
