@@ -16,7 +16,9 @@ wp-code/
 ├── css/       → Snippet CSS
 ├── js/        → Snippet JavaScript
 ├── php/       → Snippet PHP
+├── html/      → Snippet HTML
 ├── custom/    → Kode gabungan untuk fitur tertentu
+├── planning/  → Panduan & roadmap project custom programming
 └── README.md  → File ini
 ```
 
@@ -28,3 +30,11 @@ wp-code/
 
 > **Catatan:** Sesuaikan class/selector dengan struktur project yang ada, karena
 > sebagian snippet dibuat untuk kasus/website tertentu.
+
+## Planning (Custom Programming)
+
+Panduan untuk project custom programming, ada di folder `planning/`:
+
+- `AGENT.md`: aturan wajib coding untuk developer / AI agent
+- `DESIGN.md`: nilai desain (breakpoint, spacing, font, warna)
+- `PLAN.md`: roadmap per fase, dari setup sampai testing
