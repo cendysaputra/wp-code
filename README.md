@@ -1,40 +1,40 @@
-# CSS, JS & PHP untuk WordPress + Elementor
+# wp-code
 
-Kumpulan **kode custom** (CSS, JavaScript, dan PHP) yang biasa dipakai untuk
-project berbasis **WordPress** dan **Elementor**.
+Kumpulan kode dan panduan web development:
 
-Code ini bisa ditempel lewat:
-- **Elementor** → Custom CSS / HTML Widget
-- **WordPress** → Customizer (Additional CSS), Code Snippets plugin, atau `functions.php`
+1. **Snippet WordPress + Elementor**: CSS, JS, PHP siap tempel.
+2. **Planning custom programming**: aturan, design system, dan roadmap untuk project dari nol.
 
----
-
-## Struktur Folder
+## Struktur
 
 ```
 wp-code/
-├── css/       → Snippet CSS
-├── js/        → Snippet JavaScript
-├── php/       → Snippet PHP
-├── html/      → Snippet HTML
-├── custom/    → Kode gabungan untuk fitur tertentu
-├── planning/  → Panduan & roadmap project custom programming
-└── README.md  → File ini
+├── css/       snippet CSS
+├── js/        snippet JavaScript
+├── php/       snippet PHP (functions.php / Code Snippets)
+├── html/      snippet HTML (HTML widget)
+├── custom/    fitur gabungan multi-file
+└── planning/  panduan project custom programming
 ```
 
-## Cara Pakai
+## Snippet WordPress + Elementor
 
-1. Buka folder sesuai jenis kode yang dibutuhkan (`css/`, `js/`, atau `php/`).
-2. Buka file, salin isinya.
-3. Tempel ke tempat yang sesuai di WordPress/Elementor (lihat opsi di atas).
+| Jenis | Tempel di |
+|---|---|
+| CSS | Elementor Custom CSS / Customizer > Additional CSS |
+| JS, HTML | Elementor HTML widget |
+| PHP | `functions.php` child theme / plugin Code Snippets |
 
-> **Catatan:** Sesuaikan class/selector dengan struktur project yang ada, karena
-> sebagian snippet dibuat untuk kasus/website tertentu.
+Fitur di `custom/` terdiri dari beberapa file, pasang sesuai urutan nomor (`1-`, `2-`, `3-`).
 
-## Planning (Custom Programming)
+> Sesuaikan class/selector dengan project, sebagian snippet dibuat untuk kasus tertentu.
 
-Panduan untuk project custom programming, ada di folder `planning/`:
+## Planning Custom Programming
 
-- `AGENT.md`: aturan wajib coding untuk developer / AI agent
-- `DESIGN.md`: nilai desain (breakpoint, spacing, font, warna)
-- `PLAN.md`: roadmap per fase, dari setup sampai testing
+| File | Isi |
+|---|---|
+| [`AGENT.md`](planning/AGENT.md) | Aturan wajib coding untuk developer / AI agent |
+| [`DESIGN.md`](planning/DESIGN.md) | Nilai desain: breakpoint, spacing, font, warna |
+| [`PLAN.md`](planning/PLAN.md) | Roadmap per fase, dari setup sampai testing |
+
+Cara pakai: salin folder `planning/` ke project baru, isi nilai `TBD` di `DESIGN.md`, lalu kerjakan `PLAN.md` dari Fase 0.
