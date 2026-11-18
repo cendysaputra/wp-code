@@ -1,7 +1,7 @@
 # PLAN.md — Roadmap Development Web (Custom Programming)
 
 Kerjakan berurutan per fase; centang `[x]` saat selesai.
-Semua pekerjaan **wajib mengikuti 6 Aturan Utama** di [`AGENT.md`](./AGENT.md).
+Semua pekerjaan **wajib mengikuti 7 Aturan Utama** di [`AGENT.md`](./AGENT.md).
 
 | Fase | Fokus | Output |
 |---|---|---|
@@ -23,7 +23,7 @@ Semua pekerjaan **wajib mengikuti 6 Aturan Utama** di [`AGENT.md`](./AGENT.md).
 
 - [ ] Kumpulkan kebutuhan: sitemap, daftar halaman, fitur, desain (Figma)
 - [ ] Tentukan stack (frontend, backend, database, hosting)
-- [ ] Init repo, linter (ESLint/Stylelint), formatter (Prettier), `.editorconfig`, `.env.example`
+- [ ] Init repo, linter (ESLint/Stylelint + rule `selector-class-pattern` kebab-case), formatter (Prettier), `.editorconfig`, `.env.example`
 - [ ] Struktur folder, contoh:
   ```
   src/
@@ -164,13 +164,14 @@ Rakit halaman dari komponen; konten dari `content/`, config dari `config/`.
 
 ## Fase 7 — QC (Quality Control)
 
-### Standar kode (6 Aturan Utama)
+### Standar kode (7 Aturan Utama)
 - [ ] Section spacing sesuai spesifikasi di semua halaman & breakpoint
 - [ ] Tidak ada hardcode teks/style
 - [ ] Semua size kelipatan 8
 - [ ] Hierarki heading benar (cek dengan HeadingsMap / Lighthouse)
 - [ ] Semantik HTML5 benar (validasi W3C)
 - [ ] Semua UI pakai komponen, tidak ada duplikasi markup
+- [ ] Semua nama class kebab-case (cek dengan Stylelint `selector-class-pattern`)
 
 ### Konten
 - [ ] Typo, konsistensi istilah, tidak ada lorem ipsum

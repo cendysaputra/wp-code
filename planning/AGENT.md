@@ -81,6 +81,13 @@ Struktur dasar setiap halaman:
 - Satu komponen = satu folder/file + style-nya sendiri, memakai token global.
 - Sebelum membuat komponen baru, **cek dulu apakah sudah ada** komponen yang bisa dipakai/di-extend.
 
+### 7. Penamaan class: kebab-case
+
+- Semua nama class CSS **wajib kebab-case**: huruf kecil, kata dipisah tanda `-`.
+- ✅ `card`, `card-title`, `card-title-active`, `section-heading`, `btn-primary`
+- ❌ `CardTitle` (PascalCase), `cardTitle` (camelCase), `card_title` (snake_case), `card__title--active` (BEM)
+- Berlaku juga untuk nama CSS variable (`--color-primary`, `--section-py`) dan atribut `id`/`data-*`.
+
 ---
 
 ## Aturan Kerja
@@ -92,14 +99,14 @@ Struktur dasar setiap halaman:
 
 ## Konvensi Kode
 
-- **CSS**: mobile-first boleh, tapi breakpoint wajib sama dengan tabel di atas. Penamaan class BEM (`.card__title--active`).
+- **CSS**: mobile-first boleh, tapi breakpoint wajib sama dengan tabel di atas. Nama class wajib kebab-case (lihat Aturan Utama #7).
 - **JS/TS**: modular, tidak ada variabel global, cek elemen/data ada sebelum dipakai.
 - **Backend**: validasi & sanitasi semua input, escape output, query pakai prepared statement/ORM.
 - **Aksesibilitas**: `alt` pada gambar, label pada form, focus state terlihat, kontras min. WCAG AA.
 
 ## Definition of Done (per task)
 
-- [ ] Lolos 6 Aturan Utama di atas
+- [ ] Lolos 7 Aturan Utama di atas
 - [ ] Rapi di desktop, tablet, mobile
 - [ ] Tidak ada error di console / log server
 - [ ] Lint & test lolos
