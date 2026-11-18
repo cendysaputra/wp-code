@@ -6,6 +6,7 @@ Ikuti aturan di `AGENT.md`. Breakpoint: mobile ≤767, tablet 768–1024, deskto
 - [ ] Kebutuhan: sitemap, halaman, fitur, desain
 - [ ] Pilih stack & hosting
 - [ ] Init repo, ESLint, Stylelint (kebab-case), Prettier, `.env.example`
+- [ ] Library optional (jika perlu): Swiper.js, FsLightbox
 - [ ] Folder: `styles/ components/ layouts/ pages/ content/ config/ lib/ tests/`
 
 ## Fase 1 — Global Settings (`tokens.css`)
@@ -20,7 +21,7 @@ Ikuti aturan di `AGENT.md`. Breakpoint: mobile ≤767, tablet 768–1024, deskto
 
 ## Fase 2 — Komponen
 - [ ] Layout: header, nav, mobile menu, footer, page-layout, section, container, grid
-- [ ] UI: button, heading, section-heading, card, faq, testimonial, slider, tabs, modal, breadcrumb, pagination, cta
+- [ ] UI: button, heading, section-heading, card, faq, testimonial, slider (Swiper), lightbox (FsLightbox), tabs, modal, breadcrumb, pagination, cta
 - [ ] Form: input, select, textarea, checkbox, form-field
 - [ ] Media: image (lazy, alt), icon
 - [ ] Dokumentasi/demo komponen
@@ -42,6 +43,7 @@ Ikuti aturan di `AGENT.md`. Breakpoint: mobile ≤767, tablet 768–1024, deskto
 - [ ] Console & log bersih
 - [ ] Layout: overlap, z-index, overflow, state kosong/loading/error
 - [ ] Audit hardcode style/teks
+- [ ] Cek lazyload & library hanya load di halaman yang butuh
 
 ## Fase 6 — Security
 - [ ] Audit dependency
@@ -53,7 +55,7 @@ Ikuti aturan di `AGENT.md`. Breakpoint: mobile ≤767, tablet 768–1024, deskto
 - [ ] Scan OWASP ZAP, backup + tes restore
 
 ## Fase 7 — QC
-- [ ] 7 aturan `AGENT.md` terpenuhi di semua halaman
+- [ ] 9 aturan `AGENT.md` terpenuhi di semua halaman
 - [ ] Validasi W3C, heading map benar
 - [ ] Konten: typo, no lorem ipsum, alt gambar, favicon, OG image
 - [ ] SEO: title/meta unik, sitemap, robots, canonical, structured data

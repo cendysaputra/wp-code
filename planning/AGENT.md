@@ -14,6 +14,17 @@ Project custom programming. Roadmap: `PLAN.md`.
 5. **HTML5 semantik**: `header`, `nav`, `main`, `section`, `article`, `footer`. `div` hanya untuk wrapper. `button` untuk aksi, `a` untuk link.
 6. **Komponen reusable**: semua UI jadi komponen walau dipakai sekali (card, faq, button, dll). Data via props.
 7. **Class kebab-case**: `card-title-active`. Dilarang PascalCase, camelCase, snake_case, BEM. Berlaku juga untuk CSS variable, `id`, `data-*`.
+8. **Optimize & clean code**: fungsi kecil & satu tugas, nama jelas, no duplikasi, no dead code/console.log. Minify & tree-shake saat build.
+9. **Lazyload**: gambar/iframe `loading="lazy"` (kecuali hero/LCP), komponen & library berat di-load hanya di halaman yang butuh (dynamic import).
+
+## Library Optional
+
+Install hanya jika halaman butuh, load via dynamic import.
+
+| Library | Untuk | Install |
+|---|---|---|
+| Swiper.js | slider/carousel | `npm i swiper` |
+| FsLightbox | lightbox gambar/video | `npm i fslightbox` |
 
 ## Workflow
 
@@ -24,4 +35,4 @@ Project custom programming. Roadmap: `PLAN.md`.
 
 ## Done
 
-Lolos 7 aturan, rapi di 3 device, console/log bersih, lint & test lolos, PLAN.md di-update, sudah push.
+Lolos 9 aturan, rapi di 3 device, console/log bersih, lint & test lolos, PLAN.md di-update, sudah push.
