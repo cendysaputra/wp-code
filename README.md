@@ -2,7 +2,7 @@
 
 # WP Code
 
-**Snippet WordPress + Elementor siap tempel & panduan project custom programming.**
+**Snippet WordPress + Elementor siap tempel & panduan planning project web.**
 
 ![WordPress](https://img.shields.io/badge/WordPress-21759B?style=flat-square&logo=wordpress&logoColor=white)
 ![Elementor](https://img.shields.io/badge/Elementor-92003B?style=flat-square&logo=elementor&logoColor=white)
@@ -11,7 +11,7 @@
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-[Snippet WordPress](#snippet-wordpress) · [Planning](#planning-custom-programming) · [Struktur](#struktur)
+[Snippet WordPress](#snippet-wordpress) · [Planning](#planning-project) · [Struktur](#struktur)
 
 </div>
 
@@ -25,7 +25,7 @@ wp-code/
 │   ├── php/     snippet PHP
 │   ├── html/    snippet HTML
 │   └── custom/  fitur gabungan multi-file
-└── planning/    panduan project custom programming
+└── planning/    panduan planning project web
 ```
 
 ## Snippet WordPress
@@ -110,9 +110,9 @@ wp-code/
 
 > **Catatan:** sesuaikan class/selector dengan project, sebagian snippet dibuat untuk kasus tertentu.
 
-## Planning Custom Programming
+## Planning Project
 
-Template panduan untuk project web dari nol.
+Template panduan untuk project web, bisa dipakai di custom programming maupun WordPress.
 
 | File | Isi |
 |---|---|

@@ -1,6 +1,6 @@
 # AGENT.md
 
-Project custom programming. Roadmap: `PLAN.md`. Nilai desain: `DESIGN.md`.
+Berlaku untuk project custom programming maupun WordPress. Roadmap: `PLAN.md`. Nilai desain: `DESIGN.md`.
 
 ## Aturan Wajib
 
