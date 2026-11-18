@@ -75,9 +75,3 @@ Ikuti aturan di `AGENT.md`. Breakpoint: mobile ≤767, tablet 768-1024, desktop 
 - [ ] Cross-browser: Chrome, Firefox, Safari, Edge
 - [ ] A11y (axe), load test (k6)
 - [ ] UAT + sign-off client
-
-## Fase 10: Deploy
-- [ ] Staging & production, CI/CD
-- [ ] Domain, SSL, CDN, env production, debug off
-- [ ] Analytics, Search Console, Sentry, uptime monitor
-- [ ] Jadwal maintenance & serah terima
