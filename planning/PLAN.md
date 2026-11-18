@@ -1,201 +1,223 @@
-# PLAN.md — Roadmap Development Web
+# PLAN.md — Roadmap Development Web (Custom Programming)
 
-Stack: WordPress + Elementor. Kerjakan berurutan per fase; centang `[x]` saat selesai.
+Kerjakan berurutan per fase; centang `[x]` saat selesai.
+Semua pekerjaan **wajib mengikuti 6 Aturan Utama** di [`AGENT.md`](./AGENT.md).
 
 | Fase | Fokus | Output |
 |---|---|---|
-| 0 | Persiapan & Setup | Environment siap, struktur halaman jelas |
-| 1 | Global Settings (Design System) | Font, warna, ukuran terpusat |
-| 2 | Komponen Global | Header, footer, komponen reusable |
-| 3 | Development Semua Halaman | Semua halaman jadi (desktop) |
-| 4 | Responsive | Tampilan rapi di tablet & mobile |
+| 0 | Persiapan & Setup | Repo, stack, struktur folder siap |
+| 1 | Global Settings (Design Tokens) | Font, warna, size, spacing terpusat |
+| 2 | Komponen Reusable | Library komponen + layout global |
+| 3 | Development Semua Halaman | Semua halaman jadi |
+| 4 | Responsive | Rapi di desktop, tablet, mobile |
 | 5 | Bug Checking | Bug fungsional & visual beres |
 | 6 | Security Check | Celah keamanan ditutup |
-| 7 | QC (Quality Control) | Konten, SEO, performa, aksesibilitas |
-| 8 | Unit Test | Kode custom (PHP/JS) teruji |
-| 9 | Testing Lanjutan | Cross-browser, E2E, load, UAT |
-| 10 | Launch & Maintenance | Live + monitoring |
+| 7 | QC (Quality Control) | Standar, konten, SEO, performa, a11y |
+| 8 | Unit Test | Logic & komponen teruji |
+| 9 | Testing Lanjutan | Integration, E2E, cross-browser, load, UAT |
+| 10 | Deploy & Maintenance | Live + monitoring |
 
 ---
 
 ## Fase 0 — Persiapan & Setup
 
-- [ ] Kumpulkan kebutuhan: sitemap, daftar halaman, fitur, referensi desain
-- [ ] Siapkan environment: local/staging (LocalWP / Docker) + production
-- [ ] Install WordPress, theme (Hello Elementor / child theme), Elementor (Pro)
-- [ ] Install plugin wajib (SEO, cache, security, form, backup) — seminimal mungkin
-- [ ] Aktifkan `WP_DEBUG` + `WP_DEBUG_LOG` di local/staging
-- [ ] Setup Git & struktur folder kode custom
+- [ ] Kumpulkan kebutuhan: sitemap, daftar halaman, fitur, desain (Figma)
+- [ ] Tentukan stack (frontend, backend, database, hosting)
+- [ ] Init repo, linter (ESLint/Stylelint), formatter (Prettier), `.editorconfig`, `.env.example`
+- [ ] Struktur folder, contoh:
+  ```
+  src/
+  ├── styles/       → tokens, base, utilities
+  ├── components/   → komponen reusable
+  ├── layouts/      → header, footer, page layout
+  ├── pages/        → halaman
+  ├── content/      → teks/konten terpusat (JSON / i18n)
+  ├── config/       → konfigurasi (URL, kontak, API)
+  └── lib/          → helper & logic
+  tests/
+  ```
 
-## Fase 1 — Global Settings (Design System)
+## Fase 1 — Global Settings (Design Tokens)
 
-Semua diatur di **Elementor → Site Settings** dan diekspos sebagai CSS variables.
+Semua nilai di satu tempat (mis. `src/styles/tokens.css`). **Tidak ada nilai hardcode di luar file ini.**
 
 ### Typography
-- [ ] Tentukan font family (heading & body), load via Google Fonts / local font (`font-display: swap`)
-- [ ] Global Fonts: Primary, Secondary, Text, Accent
-- [ ] Skala ukuran font (contoh, pakai `clamp()` agar fluid):
-  | Token | Desktop | Mobile |
-  |---|---|---|
-  | `--fs-h1` | 48px | 32px |
-  | `--fs-h2` | 40px | 28px |
-  | `--fs-h3` | 32px | 24px |
-  | `--fs-h4` | 24px | 20px |
-  | `--fs-body` | 16px | 15px |
-  | `--fs-small` | 14px | 13px |
-- [ ] Line-height & letter-spacing per level heading/body
-- [ ] Font weight yang dipakai (batasi, mis. 400/500/700)
+- [ ] Font family heading & body (load lokal / `font-display: swap`)
+- [ ] Font weight yang dipakai (batasi, mis. 400 / 500 / 700)
+- [ ] Skala font (kelipatan 8):
+  | Token | Desktop | Tablet | Mobile |
+  |---|---|---|---|
+  | `--fs-h1` | 64px | 48px | 40px |
+  | `--fs-h2` | 48px | 40px | 32px |
+  | `--fs-h3` | 32px | 32px | 24px |
+  | `--fs-h4` | 24px | 24px | 24px |
+  | `--fs-h5`, `--fs-h6` | 16px | 16px | 16px |
+  | `--fs-body` | 16px | 16px | 16px |
+- [ ] Line-height kelipatan 8 (mis. body 16/24, h2 48/56)
+- [ ] Class utilitas tampilan heading: `.text-h1` … `.text-h6` (lepas dari tag)
 
 ### Color
-- [ ] Global Colors: Primary, Secondary, Text, Accent
-- [ ] Warna tambahan: background, surface, border, success, warning, error
-- [ ] Cek kontras warna teks vs background (min. WCAG AA 4.5:1)
+- [ ] Brand: `--color-primary`, `--color-secondary`, `--color-accent`
+- [ ] Netral: `--color-text`, `--color-text-muted`, `--color-bg`, `--color-surface`, `--color-border`
+- [ ] Status: `--color-success`, `--color-warning`, `--color-error`
+- [ ] Varian hover/active per warna brand
+- [ ] Cek kontras min. WCAG AA (4.5:1)
 
-### Size & Spacing
-- [ ] Skala spacing: `4, 8, 12, 16, 24, 32, 48, 64, 96px`
-- [ ] Container width (mis. 1200px / 1320px) & padding samping per device
-- [ ] Border radius, shadow, transition duration standar
+### Size & Spacing (kelipatan 8)
+- [ ] Spacing: `--space-1: 8px` s/d `--space-15: 120px`
+- [ ] Section spacing:
+  | Token | Desktop | Tablet | Mobile |
+  |---|---|---|---|
+  | `--section-py` | 120px | 72px | 72px |
+  | `--section-px` | container | 24px | 16px |
+- [ ] Container max-width (mis. `--container: 1200px`)
 - [ ] Breakpoint: mobile ≤767px, tablet 768–1024px, desktop ≥1025px
+- [ ] Radius (8, 16, 24), shadow, z-index scale, durasi transisi
 
-### Komponen Dasar
-- [ ] Style button (primary, secondary, outline, link) + state hover/focus/disabled
-- [ ] Style form field (input, select, textarea, checkbox) + state error
-- [ ] Style link, list, blockquote, image caption
+### Base
+- [ ] Reset/normalize CSS
+- [ ] Style dasar elemen: heading, paragraf, link, list, gambar, form
+- [ ] Halaman **style guide** internal untuk menampilkan semua token
 
-### Output
-- [ ] File `css/global-variables.css` berisi semua token `:root { ... }`
-- [ ] Dokumentasi token singkat di README / halaman style guide
+## Fase 2 — Komponen Reusable
 
-## Fase 2 — Komponen Global
+Semua UI = komponen, walau dipakai 1x. Data via props, style via token.
 
-- [ ] Header (logo, menu, mega menu/dropdown, CTA, sticky)
+### Layout
+- [ ] `Header` (`<header>` + `<nav>`, logo, menu, CTA, sticky)
 - [ ] Mobile menu (hamburger / off-canvas)
-- [ ] Footer (menu, kontak, sosial media, copyright)
-- [ ] Template: Single Post, Archive/Blog, Search, 404
-- [ ] Template WooCommerce (jika ada): Shop, Single Product, Cart, Checkout, My Account
-- [ ] Komponen reusable (Elementor Global Widget / Template): CTA section, card, testimonial, FAQ, form
-- [ ] Floating WhatsApp / chat button (jika diperlukan)
+- [ ] `Footer` (`<footer>`)
+- [ ] `PageLayout` (header + `<main>` + footer)
+- [ ] `Section` (`<section>` + padding token + container)
+- [ ] `Container`, `Grid`/`Stack`
+
+### UI
+- [ ] `Button` (primary, secondary, outline, link; state hover/focus/disabled/loading)
+- [ ] `Heading` (prop `level` h1–h6 + prop `size` tampilan)
+- [ ] `SectionHeading` (eyebrow, judul, deskripsi)
+- [ ] `Card` (prop `headingLevel`)
+- [ ] `FAQ` / `Accordion`
+- [ ] `Testimonial`, `Slider`/`Carousel`
+- [ ] `Tabs`, `Modal`, `Breadcrumb`, `Pagination`
+- [ ] Form: `Input`, `Select`, `Textarea`, `Checkbox`, `FormField` (label + error)
+- [ ] `Image` (responsive, lazy, wajib `alt`), `Icon`
+- [ ] `CTA`, floating WhatsApp/chat (jika perlu)
+- [ ] Dokumentasi pemakaian komponen (Storybook / halaman demo)
 
 ## Fase 3 — Development Semua Halaman
 
-Kerjakan dari desktop, pakai komponen & token global (jangan hardcode).
+Rakit halaman dari komponen; konten dari `content/`, config dari `config/`.
 
 - [ ] Home
-- [ ] About / Tentang Kami
+- [ ] About
 - [ ] Services / Layanan (list + detail)
 - [ ] Products / Produk (list, kategori, detail)
 - [ ] Portfolio / Project (jika ada)
 - [ ] Blog (list + detail)
-- [ ] Contact / Kontak (form, maps, info)
+- [ ] Contact (form, maps, info)
 - [ ] FAQ
-- [ ] Halaman legal: Privacy Policy, Terms & Conditions
-- [ ] 404 & Thank You page
-- [ ] Integrasi form (Elementor Form → email / WhatsApp / CRM)
-- [ ] Animasi & interaksi (scroll, parallax, reveal) — secukupnya
+- [ ] Privacy Policy, Terms & Conditions
+- [ ] 404, 500, Thank You
+- [ ] Backend/API: form submit, email, integrasi pihak ketiga
+- [ ] Animasi & interaksi secukupnya (hormati `prefers-reduced-motion`)
+- [ ] Cek per halaman: 1 `h1`, heading berurutan, semantik HTML5 benar
 
 ## Fase 4 — Responsive
 
-- [ ] Cek & perbaiki setiap halaman di breakpoint: 1440, 1280, 1024, 768, 414, 375, 360px
-- [ ] Tidak ada horizontal scroll di semua device
-- [ ] Ukuran font & spacing sesuai token mobile/tablet
-- [ ] Gambar responsive (`srcset`, ukuran tepat, tidak pecah/terpotong)
-- [ ] Menu mobile, slider, tab, accordion berfungsi dengan sentuhan
-- [ ] Touch target min. 44×44px
-- [ ] Cek orientasi landscape di mobile/tablet
-- [ ] Tes di device asli (Android & iOS), bukan hanya DevTools
+- [ ] Cek setiap halaman di: 1440, 1280, 1024, 768, 414, 375, 360px
+- [ ] Section spacing sesuai: desktop 120px, tablet 72px / 24px, mobile 72px / 16px
+- [ ] Tidak ada horizontal scroll
+- [ ] Font & spacing ikut token per breakpoint, tetap kelipatan 8
+- [ ] Gambar responsive (`srcset`/`sizes`, WebP/AVIF), tidak pecah/terpotong
+- [ ] Menu, slider, tab, accordion jalan dengan touch
+- [ ] Touch target min. 48×48px
+- [ ] Landscape mobile/tablet
+- [ ] Tes di device asli (Android & iOS)
 
 ## Fase 5 — Bug Checking
 
-- [ ] Klik semua link & tombol (tidak ada 404 / broken link)
-- [ ] Tes semua form: validasi, pesan sukses/gagal, email terkirim
-- [ ] Console browser bersih dari error JS
-- [ ] `debug.log` bersih dari PHP error/warning/notice
-- [ ] Cek konflik plugin (nonaktifkan satu per satu jika ada bug aneh)
-- [ ] Cek layout bug: elemen overlap, z-index, overflow, slider loop
-- [ ] Catat bug di issue tracker (judul, langkah reproduksi, device, screenshot)
-- [ ] Retest setelah fix
+- [ ] Semua link & tombol berfungsi (tidak ada broken link)
+- [ ] Semua form: validasi client & server, pesan sukses/gagal
+- [ ] Console browser & log server bersih dari error/warning
+- [ ] Layout bug: overlap, z-index, overflow
+- [ ] State kosong, loading, error tampil benar
+- [ ] Audit hardcode: cari nilai warna/px/teks mentah di luar token & content (`grep`/Stylelint rule)
+- [ ] Catat bug di issue tracker (langkah reproduksi, device, screenshot) → fix → retest
 
 ## Fase 6 — Security Check
 
-- [ ] Update WordPress core, theme, plugin ke versi terbaru
-- [ ] Hapus plugin/theme yang tidak dipakai
-- [ ] Username admin bukan `admin`, password kuat, aktifkan 2FA
-- [ ] Batasi login attempt, ubah URL login (opsional)
-- [ ] Nonaktifkan XML-RPC jika tidak dipakai
-- [ ] `DISALLOW_FILE_EDIT = true` di `wp-config.php`
-- [ ] Permission file: folder 755, file 644, `wp-config.php` 600/640
-- [ ] SSL aktif + redirect HTTP → HTTPS
-- [ ] Security headers: `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Content-Security-Policy`, `HSTS`
-- [ ] Review kode custom PHP: sanitize input, escape output, nonce, capability check, `$wpdb->prepare()`
-- [ ] Review kode JS: tidak ada `innerHTML` dari input user tanpa escape (XSS)
-- [ ] Anti-spam form (reCAPTCHA / honeypot)
-- [ ] Scan malware & vulnerability (Wordfence / WPScan)
-- [ ] Backup otomatis terjadwal + tes restore
+- [ ] Dependency audit (`npm audit` / `composer audit` / Snyk), update paket rentan
+- [ ] Validasi & sanitasi semua input (client **dan** server)
+- [ ] Escape output, cegah XSS (hindari `innerHTML` dari input user)
+- [ ] Cegah SQL injection (prepared statement / ORM)
+- [ ] CSRF token untuk form & request yang mengubah data
+- [ ] Rate limiting + anti-spam (captcha / honeypot) di form & login
+- [ ] Auth: hash password (bcrypt/argon2), session/JWT aman, cookie `HttpOnly` `Secure` `SameSite`
+- [ ] Otorisasi: cek hak akses di setiap endpoint
+- [ ] HTTPS + security headers: CSP, HSTS, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`
+- [ ] CORS dibatasi ke domain yang diizinkan
+- [ ] Secret hanya di env variable; tidak ada di repo
+- [ ] Upload file: validasi tipe & ukuran, simpan di luar web root
+- [ ] Error message tidak membocorkan detail sistem
+- [ ] Scan OWASP Top 10 (OWASP ZAP)
+- [ ] Backup database terjadwal + tes restore
 
 ## Fase 7 — QC (Quality Control)
 
+### Standar kode (6 Aturan Utama)
+- [ ] Section spacing sesuai spesifikasi di semua halaman & breakpoint
+- [ ] Tidak ada hardcode teks/style
+- [ ] Semua size kelipatan 8
+- [ ] Hierarki heading benar (cek dengan HeadingsMap / Lighthouse)
+- [ ] Semantik HTML5 benar (validasi W3C)
+- [ ] Semua UI pakai komponen, tidak ada duplikasi markup
+
 ### Konten
-- [ ] Typo, grammar, konsistensi istilah
-- [ ] Semua placeholder/lorem ipsum sudah diganti
-- [ ] Gambar punya `alt` text, favicon & OG image terpasang
+- [ ] Typo, konsistensi istilah, tidak ada lorem ipsum
+- [ ] Semua gambar punya `alt`; favicon & OG image ada
 
 ### SEO
 - [ ] Title & meta description unik per halaman
-- [ ] Struktur heading benar (1 `H1` per halaman)
-- [ ] Sitemap XML & `robots.txt`; submit ke Google Search Console
-- [ ] Schema markup (Organization, Breadcrumb, Product/Article)
-- [ ] Permalink rapi & redirect 301 untuk URL lama
+- [ ] Sitemap XML, `robots.txt`, canonical
+- [ ] Structured data (Organization, Breadcrumb, Article/Product)
+- [ ] URL rapi + redirect 301 jika perlu
 
 ### Performa
-- [ ] PageSpeed Insights / Lighthouse: target ≥90 (desktop), ≥80 (mobile)
+- [ ] Lighthouse ≥90 (desktop), ≥80 (mobile)
 - [ ] Core Web Vitals: LCP <2.5s, CLS <0.1, INP <200ms
-- [ ] Kompres gambar (WebP/AVIF), lazy load
-- [ ] Caching, minify CSS/JS, hapus aset tidak terpakai
-- [ ] Batasi font & widget Elementor yang berat
+- [ ] Optimasi gambar, lazy load, code splitting, minify, caching/CDN
 
 ### Aksesibilitas
-- [ ] Navigasi keyboard (Tab) & focus visible
-- [ ] Kontras warna lolos WCAG AA
-- [ ] Label form & ARIA pada elemen interaktif
+- [ ] Navigasi keyboard & focus visible
+- [ ] Kontras WCAG AA, label form, ARIA seperlunya
 
 ## Fase 8 — Unit Test
 
-Fokus ke **kode custom** (PHP di `php/`/`custom/`, JS di `js/`).
-
-### PHP
-- [ ] Setup PHPUnit + WP test suite (`wp scaffold plugin-tests` / `wp-env`)
-- [ ] Test function custom: input valid, input invalid, edge case
-- [ ] Test sanitasi & escape (input berbahaya tidak lolos)
-- [ ] Test hook/filter terpasang dengan benar
-- [ ] Static analysis: PHPCS (WordPress Coding Standards), PHPStan
-
-### JavaScript
-- [ ] Setup Jest / Vitest + jsdom
-- [ ] Test function JS custom (share button, accordion, tab filter, dll)
-- [ ] Test perilaku saat elemen target tidak ada (tidak error)
-- [ ] Lint: ESLint
-
-### CI
-- [ ] GitHub Actions: jalankan lint + unit test otomatis setiap push ke `main`
-- [ ] Target coverage kode custom ≥70%
+- [ ] Setup test runner (Jest / Vitest + Testing Library; PHPUnit / Pytest untuk backend)
+- [ ] Test helper & logic (`lib/`): input valid, invalid, edge case
+- [ ] Test komponen: render sesuai props, `headingLevel` benar, state (open/close, disabled, error)
+- [ ] Test validasi form & sanitasi input
+- [ ] Test endpoint/service backend (dengan mock)
+- [ ] Target coverage ≥80% untuk logic, ≥70% komponen
+- [ ] CI (GitHub Actions): lint + test otomatis setiap push ke `main`
 
 ## Fase 9 — Testing Lanjutan
 
+- [ ] **Integration test**: frontend ↔ API ↔ database, email, payment, API pihak ketiga
+- [ ] **E2E test** (Playwright): navigasi, submit form, alur utama (login/checkout jika ada)
+- [ ] **Visual regression**: screenshot desktop/tablet/mobile dibandingkan tiap perubahan
 - [ ] **Cross-browser**: Chrome, Firefox, Safari, Edge (desktop & mobile)
-- [ ] **E2E test** (Playwright): navigasi utama, submit form, alur checkout (jika WooCommerce)
-- [ ] **Visual regression**: screenshot perbandingan sebelum/sesudah perubahan
-- [ ] **Integration test**: form → email/WhatsApp/CRM, payment gateway, API pihak ketiga
-- [ ] **Load/stress test** (k6 / Loader.io) untuk halaman utama & checkout
-- [ ] **Accessibility test** otomatis (axe / Lighthouse a11y)
-- [ ] **UAT** (User Acceptance Test) bersama client + sign-off
+- [ ] **Accessibility test** otomatis (axe-core)
+- [ ] **Load/stress test** (k6) untuk halaman & endpoint utama
+- [ ] **UAT** bersama client + sign-off
 
-## Fase 10 — Launch & Maintenance
+## Fase 10 — Deploy & Maintenance
 
-- [ ] Migrasi staging → production (Duplicator / All-in-One WP Migration / manual)
-- [ ] Ganti URL, cek mixed content, flush permalink & cache
-- [ ] Matikan `WP_DEBUG` di production
-- [ ] Aktifkan "Search engine visibility" (index)
-- [ ] Pasang Google Analytics / Tag Manager & Search Console
-- [ ] Uptime monitoring & notifikasi error
-- [ ] Jadwal maintenance: update, backup, cek keamanan (bulanan)
-- [ ] Serah terima: akses, dokumentasi, panduan edit konten untuk client
+- [ ] Setup environment staging & production
+- [ ] Pipeline CI/CD (build → test → deploy)
+- [ ] Domain, SSL, CDN
+- [ ] Env variable production, matikan mode debug
+- [ ] Analytics & Search Console
+- [ ] Monitoring error (Sentry) & uptime
+- [ ] Jadwal maintenance: update dependency, backup, security scan
+- [ ] Dokumentasi & serah terima ke client
