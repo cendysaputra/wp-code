@@ -15,6 +15,8 @@
 
 </div>
 
+<br>
+
 ## Struktur
 
 ```
@@ -28,6 +30,8 @@ wp-code/
 └── planning/    panduan planning project web
 ```
 
+<br>
+
 ## Snippet WordPress
 
 | Jenis | Jumlah | Tempel di |
@@ -37,6 +41,8 @@ wp-code/
 | HTML | 2 | Elementor HTML widget |
 | PHP | 6 | `functions.php` child theme / plugin Code Snippets |
 | Custom | 1 | Ikuti urutan nomor file (`1-`, `2-`, `3-`) |
+
+<br>
 
 <details>
 <summary><b>CSS</b></summary>
@@ -108,7 +114,11 @@ wp-code/
 
 </details>
 
+<br>
+
 > **Catatan:** sesuaikan class/selector dengan project, sebagian snippet dibuat untuk kasus tertentu.
+
+<br>
 
 ## Planning Project
 
@@ -120,11 +130,15 @@ Template panduan untuk project web, bisa dipakai di custom programming maupun Wo
 | [`DESIGN.md`](planning/DESIGN.md) | Design system: breakpoint, spacing, font, warna |
 | [`PLAN.md`](planning/PLAN.md) | Roadmap per fase, dari setup sampai testing |
 
+<br>
+
 **Cara pakai**
 
 1. Salin folder `planning/` ke project baru.
 2. Isi nilai `TBD` di `DESIGN.md`.
 3. Kerjakan `PLAN.md` mulai Fase 0.
+
+<br>
 
 ## Lisensi
 
