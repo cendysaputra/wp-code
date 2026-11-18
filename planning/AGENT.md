@@ -6,10 +6,10 @@ Project custom programming. Roadmap: `PLAN.md`.
 
 1. **Section spacing** (via token, bukan hardcode)
    - Desktop ≥1025px: padding Y 120px, X ikut container
-   - Tablet 768–1024px: Y 72px, X 24px
+   - Tablet 768-1024px: Y 72px, X 24px
    - Mobile ≤767px: Y 72px, X 16px
 2. **No hardcode**: style dari token global (`tokens.css`), teks dari `content/`, config dari `config/`/env.
-3. **Size kelipatan 8** (spacing, size, font, line-height, radius). Kecuali border 1–2px.
+3. **Size kelipatan 8** (spacing, size, font, line-height, radius). Kecuali border 1-2px.
 4. **Heading**: 1 `h1` per halaman, urut tanpa loncat. Tag sesuai struktur, ukuran via class (`.text-h3`). Komponen terima prop `heading-level`.
 5. **HTML5 semantik**: `header`, `nav`, `main`, `section`, `article`, `footer`. `div` hanya untuk wrapper. `button` untuk aksi, `a` untuk link.
 6. **Komponen reusable**: semua UI jadi komponen walau dipakai sekali (card, faq, button, dll). Data via props.
