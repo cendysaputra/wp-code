@@ -7,7 +7,7 @@ Ikuti aturan di `AGENT.md`. Breakpoint: mobile ≤767, tablet 768-1024, desktop 
 - [ ] Pilih stack & hosting
 - [ ] Init repo, ESLint, Stylelint (kebab-case), Prettier, `.env.example`
 - [ ] Library optional (jika perlu): Swiper.js, FsLightbox
-- [ ] Folder: `styles/ components/ layouts/ pages/ content/ config/ lib/ tests/`
+- [ ] Struktur folder ikut konvensi framework, wajib pisah: token, komponen, konten, config
 
 ## Fase 1: Global Settings (`tokens.css`)
 - [ ] Font family & weight
